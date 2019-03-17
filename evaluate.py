@@ -16,12 +16,12 @@ from text_cnn import TextCNN
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("src_path", "./expert_dev_seg", "Data source for the evaluating model.")
-tf.flags.DEFINE_string("des_path", "./dev/", "Path for saving data.")
+tf.flags.DEFINE_string("neg_data_path", "./data/Book_del_4000/neg_clean.txt", "negative data path.")
+tf.flags.DEFINE_string("pos_data_path", "./data/Book_del_4000/pos_clean.txt", "positive data path.")
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/1535188073", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "./runs/1552811170", "Checkpoint directory from training run")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
@@ -29,7 +29,8 @@ tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on 
 
 FLAGS = tf.flags.FLAGS
 
-x_raw, y_test = data_helpers.load_data_and_labels(FLAGS.src_path, FLAGS.des_path)
+x_raw, y_test = data_helpers.load_data_and_labels(FLAGS.neg_data_path, FLAGS.pos_data_path)
+# 获取真实标签
 y_test = np.argmax(y_test, axis=1)
 
 # Map data into vocabulary
@@ -41,7 +42,8 @@ print("\nEvaluating...\n")
 
 # Evaluation
 # ==================================================
-checkpoint_file = './runs/1535188073/checkpoints/model-5700'
+# checkpoint_file = './runs/1535188073/checkpoints/model-5700'
+checkpoint_file = tf.train.latest_checkpoint(FLAGS.checkpoint_dir)
 graph = tf.Graph()
 with graph.as_default():
     session_conf = tf.ConfigProto(
