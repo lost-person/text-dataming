@@ -14,6 +14,7 @@ import jieba
 import numpy as np
 from sklearn.model_selection import KFold
 from utils import save_file, load_file, load_file2, load_file3
+import word_vec
 
 def merge_files(src_path, des_path):
     '''
@@ -142,7 +143,29 @@ def batch_iter(data, batch_size, num_epochs, shuffle = True):
             end_index = min((batch_num + 1) * batch_size, data_size)
             yield shuffled_data[start_index:end_index]
 
+def load_pretrained_wv(wv_path, vocab_processor, embedding_dim):
+    ''''
+    载入预训练词向量，有的读取，没有的随机初始化
+
+    Args:
+        wv_path str 词向量路径
+        vocab_processor obkject tensorflow的文本处理函数
+        embedding_dim int 词向量维度
+    Returns:
+        embedding array 词向量
+    '''
+    model = word_vec.get_word_vec(wv_path)
+    word_set = model.wv.index2word
+    embedding = np.random.uniform(-1, 1, 
+        size = (len(vocab_processor.vocabulary_), embedding_dim))
+    word2id = vocab_processor.vocabulary_._mapping
+    for word, index in word2id.items():
+        if word in word_set:
+            embedding[index, : ] = model[word]
+    return embedding
+
 if __name__ == '__main__':
     # merge_files('./data/, './data')
-    data_clean('./data/Book_del_4000/neg.txt', './data/Book_del_4000/pos.txt', './data/Book_del_4000/')
+    # data_clean('./data/Book_del_4000/neg.txt', './data/Book_del_4000/pos.txt', './data/Book_del_4000/')
     # load_data_and_labels('./data/htl_del_4000/neg_clean.txt', './data/htl_del_4000/pos_clean.txt')
+    pass

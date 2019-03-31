@@ -28,7 +28,8 @@ tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (defau
 tf.flags.DEFINE_float("l2_reg_lambda", 0.5, "L2 regularization lambda (default: 0.5)")
 
 # Training parameters
-tf.flags.DEFINE_boolean("load_word_vec", True, "load the pre_trained word embeddings")
+tf.flags.DEFINE_boolean("embedding_type", True, "load the pre_trained word embeddings")
+tf.flags.DEFINE_string("embedding_path", "./w2v.model", "pre_trainde word embeddings path")
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
 tf.flags.DEFINE_integer("num_epochs", 5, "Number of training epochs (default: 5)")
 tf.flags.DEFINE_integer("evaluate_every", 50, "Evaluate model on dev set after this many steps (default: 100)")
@@ -63,13 +64,15 @@ def preprocess():
     x_shuffled = x[shuffle_indices]
     y_shuffled = y[shuffle_indices]
 
-
     print("Vocabulary Size: {:d}".format(len(vocab_processor.vocabulary_)))
     return x_shuffled, y_shuffled, vocab_processor
 
 def train(x, y, vocab_processor):
     # Training
     # ==================================================
+
+    embedding = data_helpers.load_pretrained_wv(FLAGS.embedding_path, vocab_processor, 
+                    FLAGS.embedding_dim)
 
     with tf.Graph().as_default():
         session_conf = tf.ConfigProto(
@@ -84,7 +87,9 @@ def train(x, y, vocab_processor):
                 embedding_size=FLAGS.embedding_dim,
                 filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
                 num_filters=FLAGS.num_filters,
-                l2_reg_lambda=FLAGS.l2_reg_lambda)
+                l2_reg_lambda=FLAGS.l2_reg_lambda,
+                embedding_type = FLAGS.embedding_type,
+                embedding = embedding)
 
             # Define Training procedure
             global_step = tf.Variable(0, name="global_step", trainable=False)
