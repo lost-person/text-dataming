@@ -1,0 +1,6 @@
+model_checkpoint_path: "/home1/zhanglu/text-dataming/runs/NB/1554088006/checkpoints/model-350"
+all_model_checkpoint_paths: "/home1/zhanglu/text-dataming/runs/NB/1554088006/checkpoints/model-150"
+all_model_checkpoint_paths: "/home1/zhanglu/text-dataming/runs/NB/1554088006/checkpoints/model-200"
+all_model_checkpoint_paths: "/home1/zhanglu/text-dataming/runs/NB/1554088006/checkpoints/model-250"
+all_model_checkpoint_paths: "/home1/zhanglu/text-dataming/runs/NB/1554088006/checkpoints/model-300"
+all_model_checkpoint_paths: "/home1/zhanglu/text-dataming/runs/NB/1554088006/checkpoints/model-350"
