@@ -17,9 +17,9 @@ from utils import load_file, save_file
 # ==================================================
 
 # Data loading params
-tf.flags.DEFINE_string('neg_data_path', './data/htl_del_4000/neg_clean.txt', 'negative data path')
-tf.flags.DEFINE_string('pos_data_path', './data/htl_del_4000/pos_clean.txt', 'positive data path')
-tf.flags.DEFINE_string('model_path', 'htl', 'model path')
+tf.flags.DEFINE_string('neg_data_path', './data/Book_del_4000/neg_clean.txt', 'negative data path')
+tf.flags.DEFINE_string('pos_data_path', './data/Book_del_4000/pos_clean.txt', 'positive data path')
+tf.flags.DEFINE_string('model_path', 'Book', 'model path')
 
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
@@ -44,7 +44,7 @@ tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on 
 
 FLAGS = tf.flags.FLAGS
 
-out_dir = ps.path.join(os.path.curdir, 'runs', FLAGS.model_path, str(int(time.time())))
+out_dir = os.path.join(os.path.curdir, 'runs', FLAGS.model_path, str(int(time.time())))
 if not os.path.exists(out_dir):
    os.makedirs(out_dir)
 logging.basicConfig(level = logging.INFO, filename = os.path.join(out_dir, 'log.txt'), filemode = 'w')

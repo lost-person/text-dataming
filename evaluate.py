@@ -42,7 +42,7 @@ print("\nEvaluating...\n")
 
 # Evaluation
 # ==================================================
-checkpoint_file = './runs/htl/1554084481/checkpoints/model-50'
+checkpoint_file = './runs/htl/1554084481/checkpoints/model-350'
 graph = tf.Graph()
 with graph.as_default():
     session_conf = tf.ConfigProto(
@@ -77,4 +77,4 @@ correct_predictions = float(sum(all_predictions == y_test))
 print("Total number of test examples: {}".format(len(y_test)))
 print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
 df = pd.DataFrame({'real' : y_test, 'pre' : all_predictions})
-df.to_csv(os.path.join(FLAGS.checkpoint_dir, 'NB_pre_1.csv'))
+df.to_csv(os.path.join(FLAGS.checkpoint_dir, 'Book_pre.csv'))
