@@ -16,12 +16,12 @@ from text_cnn import TextCNN
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("neg_data_path", "./data/Book_del_4000/neg_clean.txt", "negative data path.")
-tf.flags.DEFINE_string("pos_data_path", "./data/Book_del_4000/pos_clean.txt", "positive data path.")
+tf.flags.DEFINE_string("neg_data_path", "./data/NB_del_4000/neg_clean.txt", "negative data path.")
+tf.flags.DEFINE_string("pos_data_path", "./data/NB_del_4000/pos_clean.txt", "positive data path.")
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/Book/1554084481", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "./runs/htl/1554084481", "Checkpoint directory from training run")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
@@ -42,7 +42,7 @@ print("\nEvaluating...\n")
 
 # Evaluation
 # ==================================================
-checkpoint_file = './runs/Book/1554084481/checkpoints/model-700'
+checkpoint_file = './runs/htl/1554084481/checkpoints/model-50'
 graph = tf.Graph()
 with graph.as_default():
     session_conf = tf.ConfigProto(
@@ -77,4 +77,4 @@ correct_predictions = float(sum(all_predictions == y_test))
 print("Total number of test examples: {}".format(len(y_test)))
 print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
 df = pd.DataFrame({'real' : y_test, 'pre' : all_predictions})
-df.to_csv(os.path.join(FLAGS.checkpoint_dir, 'Book_pre.csv'))
+df.to_csv(os.path.join(FLAGS.checkpoint_dir, 'NB_pre_1.csv'))
