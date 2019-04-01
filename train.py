@@ -44,7 +44,10 @@ tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on 
 
 FLAGS = tf.flags.FLAGS
 
-logging.basicConfig(level = logging.INFO, filename = './log.txt', filemode = 'w')
+out_dir = ps.path.join(os.path.curdir, 'runs', FLAGS.model_path, str(int(time.time())))
+if not os.path.exists(out_dir):
+   os.makedirs(out_dir)
+logging.basicConfig(level = logging.INFO, filename = os.path.join(out_dir, 'log.txt'), filemode = 'w')
 logger = logging.getLogger(__name__)
 
 def preprocess():
@@ -108,9 +111,6 @@ def train(x, y, vocab_processor):
                     grad_summaries.append(sparsity_summary)
             grad_summaries_merged = tf.summary.merge(grad_summaries)
 
-            # Output directory for models and summaries
-            timestamp = str(int(time.time()))
-            out_dir = os.path.abspath(os.path.join(os.path.curdir, "runs", timestamp))
             print("Writing to {}\n".format(out_dir))
 
             # Summaries for loss and accuracy

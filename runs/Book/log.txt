@@ -1,0 +1,62 @@
+WARNING:tensorflow:From train.py:59: VocabularyProcessor.__init__ (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From /home1/zhanglu/.conda/envs/zl-py/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/preprocessing/text.py:154: CategoricalVocabulary.__init__ (from tensorflow.contrib.learn.python.learn.preprocessing.categorical_vocabulary) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From /home1/zhanglu/.conda/envs/zl-py/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/preprocessing/text.py:170: tokenizer (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+INFO:gensim.utils:loading Word2Vec object from ./w2v.model
+INFO:gensim.utils:loading wv recursively from ./w2v.model.wv.* with mmap=None
+INFO:gensim.utils:setting ignored attribute vectors_norm to None
+INFO:gensim.utils:loading vocabulary recursively from ./w2v.model.vocabulary.* with mmap=None
+INFO:gensim.utils:loading trainables recursively from ./w2v.model.trainables.* with mmap=None
+INFO:gensim.utils:setting ignored attribute cum_table to None
+INFO:gensim.utils:loaded ./w2v.model
+INFO:tensorflow:Summary name W:0/grad/hist is illegal; using W_0/grad/hist instead.
+INFO:tensorflow:Summary name W:0/grad/sparsity is illegal; using W_0/grad/sparsity instead.
+INFO:tensorflow:Summary name conv-maxpool-3/W:0/grad/hist is illegal; using conv-maxpool-3/W_0/grad/hist instead.
+INFO:tensorflow:Summary name conv-maxpool-3/W:0/grad/sparsity is illegal; using conv-maxpool-3/W_0/grad/sparsity instead.
+INFO:tensorflow:Summary name conv-maxpool-3/b:0/grad/hist is illegal; using conv-maxpool-3/b_0/grad/hist instead.
+INFO:tensorflow:Summary name conv-maxpool-3/b:0/grad/sparsity is illegal; using conv-maxpool-3/b_0/grad/sparsity instead.
+INFO:tensorflow:Summary name conv-maxpool-4/W:0/grad/hist is illegal; using conv-maxpool-4/W_0/grad/hist instead.
+INFO:tensorflow:Summary name conv-maxpool-4/W:0/grad/sparsity is illegal; using conv-maxpool-4/W_0/grad/sparsity instead.
+INFO:tensorflow:Summary name conv-maxpool-4/b:0/grad/hist is illegal; using conv-maxpool-4/b_0/grad/hist instead.
+INFO:tensorflow:Summary name conv-maxpool-4/b:0/grad/sparsity is illegal; using conv-maxpool-4/b_0/grad/sparsity instead.
+INFO:tensorflow:Summary name conv-maxpool-5/W:0/grad/hist is illegal; using conv-maxpool-5/W_0/grad/hist instead.
+INFO:tensorflow:Summary name conv-maxpool-5/W:0/grad/sparsity is illegal; using conv-maxpool-5/W_0/grad/sparsity instead.
+INFO:tensorflow:Summary name conv-maxpool-5/b:0/grad/hist is illegal; using conv-maxpool-5/b_0/grad/hist instead.
+INFO:tensorflow:Summary name conv-maxpool-5/b:0/grad/sparsity is illegal; using conv-maxpool-5/b_0/grad/sparsity instead.
+INFO:tensorflow:Summary name w:0/grad/hist is illegal; using w_0/grad/hist instead.
+INFO:tensorflow:Summary name w:0/grad/sparsity is illegal; using w_0/grad/sparsity instead.
+INFO:tensorflow:Summary name output/b:0/grad/hist is illegal; using output/b_0/grad/hist instead.
+INFO:tensorflow:Summary name output/b:0/grad/sparsity is illegal; using output/b_0/grad/sparsity instead.
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:11:54.890455: step 50, loss 1.00225, acc 0.9175
+INFO:__main__:
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:17:25.150991: step 100, loss 0.943156, acc 0.8275
+INFO:__main__:
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:19:27.903075: step 150, loss 0.75908, acc 0.8175
+INFO:__main__:
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:22:40.820319: step 200, loss 0.663375, acc 0.8025
+INFO:__main__:
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:27:14.759626: step 250, loss 0.61043, acc 0.8125
+INFO:__main__:
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:28:53.705833: step 300, loss 0.563896, acc 0.7975
+INFO:__main__:
+INFO:__main__:
+Evaluation:
+INFO:__main__:2019-04-01T10:32:19.271400: step 350, loss 0.505378, acc 0.8275
+INFO:__main__:

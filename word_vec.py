@@ -28,6 +28,6 @@ def get_word_vec(word_vec_path):
     return Word2Vec.load(word_vec_path)
 
 if __name__ == '__main__':
-    # train_word_vec('./data/corpus.txt', './w2c.model')
-    model = get_word_vec('./w2v.model')
+    train_word_vec('./data/corpus.txt', './w2v.model')
+    # model = get_word_vec('./w2v.model')
     # print(model.most_similar('书'))
