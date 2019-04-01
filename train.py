@@ -19,7 +19,7 @@ from utils import load_file, save_file
 # Data loading params
 tf.flags.DEFINE_string('neg_data_path', './data/htl_del_4000/neg_clean.txt', 'negative data path')
 tf.flags.DEFINE_string('pos_data_path', './data/htl_del_4000/pos_clean.txt', 'positive data path')
-tf.flags.DEFINE_string('model_path', 'Book', 'model path')
+tf.flags.DEFINE_string('model_path', 'htl', 'model path')
 
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
