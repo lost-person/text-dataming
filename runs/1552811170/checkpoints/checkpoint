@@ -1,6 +1,0 @@
-model_checkpoint_path: "E:\Code\text-dataming\runs\1552811170\checkpoints\model-700"
-all_model_checkpoint_paths: "E:\Code\text-dataming\runs\1552811170\checkpoints\model-500"
-all_model_checkpoint_paths: "E:\Code\text-dataming\runs\1552811170\checkpoints\model-550"
-all_model_checkpoint_paths: "E:\Code\text-dataming\runs\1552811170\checkpoints\model-600"
-all_model_checkpoint_paths: "E:\Code\text-dataming\runs\1552811170\checkpoints\model-650"
-all_model_checkpoint_paths: "E:\Code\text-dataming\runs\1552811170\checkpoints\model-700"

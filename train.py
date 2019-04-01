@@ -19,9 +19,10 @@ from utils import load_file, save_file
 # Data loading params
 tf.flags.DEFINE_string('neg_data_path', './data/htl_del_4000/neg_clean.txt', 'negative data path')
 tf.flags.DEFINE_string('pos_data_path', './data/htl_del_4000/pos_clean.txt', 'positive data path')
+tf.flags.DEFINE_string('model_path', 'Book', 'model path')
 
 # Model Hyperparameters
-tf.flags.DEFINE_integer("embedding_dim", 64, "Dimensionality of character embedding (default: 64)")
+tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")

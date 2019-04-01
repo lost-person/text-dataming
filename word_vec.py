@@ -12,7 +12,7 @@ def train_word_vec(data_path, word_vec_path):
         data_path str 文本数据路径
         word_vec_path str 训练的词向量存储路径
     '''
-    model = Word2Vec(LineSentence(data_path), size = 64, window = 5, min_count = 0)
+    model = Word2Vec(LineSentence(data_path), size = 128, window = 5, min_count = 1, sg = 1)
     model.save(word_vec_path)
     return model
 
