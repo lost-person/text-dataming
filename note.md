@@ -32,6 +32,13 @@
 *  wordpiece_tokenizer WordpieceTokenizer对象。
 
 #### tokenize
+嵌套迭代遍历basic_tokenizer和wordpiece_tokenizer
+
+#### convert_tokens_to_ids
+参见convert_tokens_to_ids
+
+#### convert_ids_to_tokens
+同上
 
 ### class BasicTokenizer
 * do_lower_case 是否小写
@@ -56,6 +63,16 @@
 迭代遍历，对无效字符和进行处理，控制字符，字符unicode编码为 0 或 0xFFFD的跳过，其他正常
 
 ### WordpieceTokenizer
+* vocab 词表
+* unk_token 未登录词
+* max_input_chars_per_word 每个单词输入的最多字符？
+
+#### tokenize
+首先将调用unicode转换编码，之后调用whitespace_tokenize获取列表，并迭代遍历，如果字符个数大于max_input_chars_per_word，则output_tokens添加<unk>，之后使用贪心算法longest-match-first algorithm，
+实现tokenization
+
+### _is_whitespace
+判断是否为空白字符。注：\t, \n, \r虽然都是控制字符，但是在这看作空白字符
 
 ### _is_control
 判断是否为控制字符，"Cc"（字符是控制代码）和"Cf"(格式字符，通常不显示，但影响文本布局和文本处理)类别，但是不处理"\t"、"\n"、"\r"

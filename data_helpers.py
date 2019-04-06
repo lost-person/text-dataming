@@ -4,14 +4,15 @@
 数据处理程序，包含：整合文件，数据预处理，创建数据集（交叉验证），创建batch
 '''
 
+import csv
 import os
 import random
 import re
-import time
 from collections import Counter
 
 import jieba
 import numpy as np
+import pandas as pd
 from sklearn.model_selection import KFold
 from utils import save_file, load_file, load_file2, load_file3
 import word_vec
@@ -164,8 +165,53 @@ def load_pretrained_wv(wv_path, vocab_processor, embedding_dim):
             embedding[index, : ] = model[word]
     return embedding
 
+def create_bert_dataset(neg_data_path, pos_data_path):
+    '''
+    创建bert的train_set, dev_set, test_set
+    注：生成的是原始数据集，不含预处理操作
+    '''
+    # 载入数据，并添加标签
+    neg_data = load_file3(neg_data_path)
+    neg_data = [line.strip('\n') for line in neg_data]
+    neg_label = [0 for _ in neg_data]
+    pos_data = load_file3(pos_data_path)
+    pos_data = [line.strip('\n') for line in pos_data]
+    pos_label = [1 for _ in pos_data]
+    x = neg_data + pos_data
+    y = neg_label + pos_label
+
+    train_data = []
+    train_label = []
+    dev_data = []
+    dev_label = []
+    test_data = []
+    test_label = []
+
+    # 生成数据集
+    for i, line in enumerate(x):
+        if random.random() < 0.1:
+            dev_data.append(line)
+            dev_label.append(y[i])
+        elif random.random() < 0.2:
+            test_data.append(line)
+            test_label.append(0)
+        else:
+            train_data.append(line)
+            train_label.append(y[i])
+
+    # 存储
+    data = {'label' : train_label, 'data' : train_data}
+    train_df = pd.DataFrame(data)
+    train_df.to_csv(path_or_buf = os.path.join(neg_data_path, '..', 'train.tsv'), sep = '\t', index = False)
+    data = {'label' : dev_label, 'data' : dev_data}
+    dev_df = pd.DataFrame(data)
+    dev_df.to_csv(path_or_buf = os.path.join(neg_data_path, '..', 'dev.tsv'), sep = '\t', index = False)
+    data = {'label' : test_label, 'data' : test_data}
+    test_df = pd.DataFrame(data)
+    test_df.to_csv(path_or_buf = os.path.join(neg_data_path, '..', 'test.tsv'), sep = '\t', index = False)
+
 if __name__ == '__main__':
     # merge_files('./data/, './data')
     # data_clean('./data/Book_del_4000/neg.txt', './data/Book_del_4000/pos.txt', './data/Book_del_4000/')
     # load_data_and_labels('./data/htl_del_4000/neg_clean.txt', './data/htl_del_4000/pos_clean.txt')
-    pass
+    create_bert_dataset('./data/NB_del_4000/neg.txt', './data/NB_del_4000/pos.txt')
