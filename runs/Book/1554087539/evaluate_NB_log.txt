@@ -1,0 +1,11 @@
+WARNING:tensorflow:From D:\python\zl\lib\site-packages\tensorflow\contrib\learn\python\learn\preprocessing\text.py:203: tokenizer (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From D:\python\zl\lib\site-packages\tensorflow\python\training\saver.py:1266: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+INFO:tensorflow:Restoring parameters from ./runs/Book/1554087539\checkpoints\model-350
+INFO:__main__:acc: 0.5065
+INFO:__main__:pre: 0.503391
+INFO:__main__:rec: 0.965
+INFO:__main__:f1: 0.661639

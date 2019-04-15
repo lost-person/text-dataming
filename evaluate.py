@@ -1,27 +1,34 @@
 # coding = utf-8
 
 import datetime
+import logging
 import os
 import time
 
 import numpy as np
 import pandas as pd
+from sklearn.metrics import precision_score, recall_score, f1_score
 import tensorflow as tf
 from tensorflow.contrib import learn
 
 import data_helpers
 from text_cnn import TextCNN
 
+out_dir = "./runs/NB/1554088006"
+# 设置log
+logging.basicConfig(level = logging.INFO, filename = os.path.join(out_dir, 'evaluate_htl_log.txt'), filemode = 'w')
+logger = logging.getLogger(__name__)
+
 # Parameters
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("neg_data_path", "./data/Book_del_4000/neg_clean.txt", "negative data path.")
-tf.flags.DEFINE_string("pos_data_path", "./data/Book_del_4000/pos_clean.txt", "positive data path.")
+tf.flags.DEFINE_string("neg_data_path", "./data/htl_del_4000/neg_clean.txt", "negative data path.")
+tf.flags.DEFINE_string("pos_data_path", "./data/htl_del_4000/pos_clean.txt", "positive data path.")
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/NB/1554088006", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", out_dir, "Checkpoint directory from training run")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
@@ -42,7 +49,7 @@ print("\nEvaluating...\n")
 
 # Evaluation
 # ==================================================
-checkpoint_file = './runs/NB/1554088006/checkpoints/model-350'
+checkpoint_file = os.path.join(out_dir, 'checkpoints', 'model-350')
 graph = tf.Graph()
 with graph.as_default():
     session_conf = tf.ConfigProto(
@@ -75,6 +82,9 @@ with graph.as_default():
 
 correct_predictions = float(sum(all_predictions == y_test))
 print("Total number of test examples: {}".format(len(y_test)))
-print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
+logger.info("acc: {:g}".format(correct_predictions/float(len(y_test))))
+logger.info("pre: {:g}".format(precision_score(y_test, all_predictions)))
+logger.info("rec: {:g}".format(recall_score(y_test, all_predictions)))
+logger.info("f1: {:g}".format(f1_score(y_test, all_predictions)))
 df = pd.DataFrame({'real' : y_test, 'pre' : all_predictions})
-df.to_csv(os.path.join(FLAGS.checkpoint_dir, 'Book_pre.csv'))
+df.to_csv(os.path.join(FLAGS.checkpoint_dir, 'htl_pre.csv'))

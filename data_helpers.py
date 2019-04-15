@@ -180,6 +180,9 @@ def create_bert_dataset(neg_data_path, pos_data_path):
     x = neg_data + pos_data
     y = neg_label + pos_label
 
+    data = {'label' : y, 'data' : x}
+    df = pd.DataFrame(data)
+    df = df.sample(frac=1).reset_index(drop=True)
     train_data = []
     train_label = []
     dev_data = []
@@ -194,7 +197,7 @@ def create_bert_dataset(neg_data_path, pos_data_path):
             dev_label.append(y[i])
         elif random.random() < 0.2:
             test_data.append(line)
-            test_label.append(0)
+            test_label.append(y[i])
         else:
             train_data.append(line)
             train_label.append(y[i])
@@ -214,4 +217,4 @@ if __name__ == '__main__':
     # merge_files('./data/, './data')
     # data_clean('./data/Book_del_4000/neg.txt', './data/Book_del_4000/pos.txt', './data/Book_del_4000/')
     # load_data_and_labels('./data/htl_del_4000/neg_clean.txt', './data/htl_del_4000/pos_clean.txt')
-    create_bert_dataset('./data/NB_del_4000/neg.txt', './data/NB_del_4000/pos.txt')
+    create_bert_dataset('./data/htl_del_4000/neg.txt', './data/htl_del_4000/pos.txt')
