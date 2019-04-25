@@ -1,0 +1,54 @@
+.form-container {
+  margin: 30px 50px;
+  .ant-form {
+    .ant-form-item {
+      .ant-form-item-label {
+        margin: 10px 0;
+        label {
+          font-size: 16px;
+        }
+        .ant-form-item-required:before {
+          display: none;
+        }
+        .ant-form-item-required:after {
+          display: inline-block;
+          margin-left: 6px;
+          content: "*";
+          font-family: SimSun;
+          font-size: 16px;
+          color: #f50;
+        }
+      }
+      .ant-form-item-control {
+        .ant-input {
+          height: 38px;
+        }
+        .ant-select-selection-selected-value {
+          text-align: left;
+        }
+      }
+      .ant-btn {
+        background: #2a90d7;
+        border-color: #2a90d7;
+      }
+      .ant-radio-inner:after {
+        background: #2a90d7;
+      }
+      .ant-input:last-child {
+        box-shadow: none;
+      }
+      .ant-input:not([disabled]):hover {
+        border-color: #2a90d7;
+      }
+      .ant-input:not([disabled]):focus {
+        border-color: #2a90d7;
+      }
+      .has-error .ant-input:not([disabled]) {
+        border-color: #f50;
+      }
+    }
+    .create-btn {
+      margin-top: 30px;
+    }
+  }
+}
