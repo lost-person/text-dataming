@@ -80,7 +80,7 @@
         "type": "python",
         "request": "launch",
         "program": "${file}",
-        "pythonPath": "/usr/local/bin/python3",//可执行文件路径
+        "pythonPath": "${config:python.pythonPath}",//可执行文件路径
         "console": "integratedTerminal",
         "stopOnEntry": true
      },
